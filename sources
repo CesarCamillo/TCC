@@ -1,0 +1,9 @@
+maisfreq100: https://www.academia.org.br/sites/default/files/relacao_das_palavras_mais_frequentes.pdf
+maisfreq1200: https://www.dicio.com.br/lista-de-palavras/ [pelo número de letras, retirando palavras compostas]
+Corpus do Português: https://www.corpusdoportugues.org/web-dial/ [investigar]
+Translate shell: Tradução via linha de comando usando Google Translate
+
+Delta(L1, L2) = 1 - (Caracteres L1)/(Caracteres L2) + (Somatorio Distancias L1,L2)/(Caracteres L2)
+Similaridade(L1, L2) = 1 - Delta (L1, L2)
+
+trans pt:en+es+fr+it+gl+ro -i maisfreq1200.txt -o maisfreq1200-google.txt -b -no-warn
