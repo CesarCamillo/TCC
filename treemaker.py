@@ -3,7 +3,7 @@ from Bio import Phylo
 import csv
 from ete3 import Tree
 
-def matrixmaker(path):
+def matrixmaker(path, nword):
     languages=["pt","en","es","fr","it","gl","ro"]
     distances = [[0 for _ in range(7)] for _ in range(7)]
 
@@ -18,11 +18,9 @@ def matrixmaker(path):
                 headers = next(csv_reader)  # Lê o cabeçalho do CSV
 
                 for row in csv_reader:
-                    sizeL1 += len(row[0])
-                    sizeL2 += len(row[1])
                     total += float(row[2])
                 
-                distances[j][i] = 1 - (sizeL1/sizeL2) + (total/sizeL2)
+                distances[j][i] = total/nword
     lowtri = [
             [distances[0][0]],
             [distances[1][0], distances[1][1]],
@@ -43,7 +41,7 @@ def matrixmaker(path):
 if __name__ == "__main__":
     csv_directory = "resultados1200/"
 
-    distance_matrix = matrixmaker(csv_directory)
+    distance_matrix = matrixmaker(csv_directory, 1192)
 
     # Use o construtor de árvore de distância para criar a árvore filogenética
     constructor = DistanceTreeConstructor()

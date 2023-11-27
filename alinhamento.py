@@ -32,8 +32,13 @@ def process_csv(input_csv_file, output_directory):
                     for row in csv_reader:
                         col1 = row[i]
                         col2 = row[j]
-                        alignment_score = needleman_wunsch_alignment(col1, col2)                        
-                        csv_writer.writerow([col1, col2, alignment_score])                
+                        alignment_score = needleman_wunsch_alignment(col1, col2)
+                        lower = min(len(col1), len(col2))
+
+                                            #tirar negativo              normalizar
+                        dnormal = 1 - ((alignment_score + lower/2) / (3 * lower / 2))
+                                                
+                        csv_writer.writerow([col1, col2, dnormal])                
                 
 
 if __name__ == "__main__":
