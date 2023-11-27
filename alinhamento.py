@@ -38,12 +38,17 @@ def process_csv(input_csv_file, output_directory):
                         lower = min(len(col1), len(col2))
 
                                             #tirar negativo              normalizar
-                        dnormal = 1 - ((alignment_score + lower/2) / (3 * lower / 2))
+                        dnormal = 1 - ((alignment_score + (lower/2)) / (3 * (lower / 2)))
                                                 
                         csv_writer.writerow([col1, col2, dnormal])                
                 
 
 if __name__ == "__main__":
+    input_csv_file = "maisfreq1200.csv"  # Substitua pelo nome do seu arquivo CSV de entrada
+    output_directory = "resultados1200"  # Substitua pelo diretório onde deseja salvar os resultados
+
+    process_csv(input_csv_file, output_directory)
+
     for i in range(10):
         input_csv_file = os.path.join(f'resultadossplit/{i}', f'split_{i}.csv')  # Substitua pelo nome do seu arquivo CSV de entrada
         output_directory = f'resultadossplit/{i}'  # Substitua pelo diretório onde deseja salvar os resultados
