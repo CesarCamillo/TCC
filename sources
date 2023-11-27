@@ -7,3 +7,10 @@ Delta(L1, L2) = 1 - (Caracteres L1)/(Caracteres L2) + (Somatorio Distancias L1,L
 Similaridade(L1, L2) = 1 - Delta (L1, L2)
 
 trans pt:en+es+fr+it+gl+ro -i maisfreq1200.txt -o maisfreq1200-google.txt -b -no-warn
+
+pairwise - https://biopython.org/docs/1.75/api/Bio.pairwise2.html
+trees - https://www2.ib.unicamp.br/profs/sfreis/SistematicaMolecular/Aula08MetodosMatrizesDistancias/Leituras/ThePhylogeneticHandbookMatrizesDistancias.pdf
+Phylo.tree - https://www2.ib.unicamp.br/profs/sfreis/SistematicaMolecular/Aula08MetodosMatrizesDistancias/Leituras/ThePhylogeneticHandbookMatrizesDistancias.pdf
+Phylo.tree 2 - https://homolog.us/Biopython/Bio.Phylo.TreeConstruction.DistanceCalculator.html#content
+artigo 1 - https://aclanthology.org/D14-1112.pdf
+artigo 2 - https://aclanthology.org/P14-2017.pdf
