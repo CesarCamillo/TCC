@@ -1,4 +1,3 @@
-*.png
-resultados*/*
-*.txt
+resultados/*
+maisfreq*.txt
 *.xml

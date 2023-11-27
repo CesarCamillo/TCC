@@ -2,6 +2,8 @@ from Bio.Phylo.TreeConstruction import DistanceMatrix, DistanceTreeConstructor
 from Bio import Phylo
 import csv
 from ete3 import Tree
+import matplotlib.pyplot as plt
+import sys
 
 def matrixmaker(path, nword):
     languages=["pt","en","es","fr","it","gl","ro"]
@@ -39,27 +41,38 @@ def matrixmaker(path, nword):
     return distance_matrix           
 
 if __name__ == "__main__":
-    csv_directory = "resultados1200/"
+    for i in range(10):
+        csv_directory = f'resultadossplit/{i}/'
 
-    distance_matrix = matrixmaker(csv_directory, 1192)
+        distance_matrix = matrixmaker(csv_directory, 1192)
 
-    # Use o construtor de árvore de distância para criar a árvore filogenética
-    constructor = DistanceTreeConstructor()
-    utree = constructor.upgma(distance_matrix)
+        with open(csv_directory+"matrix.txt", 'w') as f:
+            sys.stdout = f
+            print (distance_matrix)
+        # Use o construtor de árvore de distância para criar a árvore filogenética
+        constructor = DistanceTreeConstructor()
+        utree = constructor.upgma(distance_matrix)
 
-    # Salve a árvore em um arquivo no formato Newick
-    output_tree_file = "phylogenetic1200_utree.xml"
-    Phylo.write(utree, output_tree_file, "nexml")
-    
-    tree = Phylo.read("phylogenetic1200_utree.xml", "nexml")
-    tree.ladderize() 
-    Phylo.draw(tree)
+        # Salve a árvore em um arquivo no formato Newick
+        output_tree_file = "phylogenetic1200_utree.xml"
+        Phylo.write(utree, output_tree_file, "nexml")
+        
+        plt.figure()
+        tree = Phylo.read("phylogenetic1200_utree.xml", "nexml")
+        tree.ladderize() 
+        Phylo.draw(tree, do_show=False)
+        plt.savefig(csv_directory + "utree1200.png")
+        plt.close()
 
-    njtree = constructor.nj(distance_matrix)
 
-    output_tree_file = "phylogenetic1200_njtree.xml"
-    Phylo.write(njtree, output_tree_file, "nexml")
+        njtree = constructor.nj(distance_matrix)
 
-    tree = Phylo.read("phylogenetic1200_njtree.xml", "nexml")
-    tree.ladderize()  
-    Phylo.draw(tree)
+        output_tree_file = "phylogenetic1200_njtree.xml"
+        Phylo.write(njtree, output_tree_file, "nexml")
+
+        plt.figure()
+        tree = Phylo.read("phylogenetic1200_njtree.xml", "nexml")
+        tree.ladderize()  
+        Phylo.draw(tree, do_show=False)
+        plt.savefig(csv_directory + "njtree1200.png")
+        plt.close()

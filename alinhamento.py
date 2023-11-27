@@ -1,6 +1,8 @@
 import csv
 from Bio import pairwise2
 from Bio.pairwise2 import format_alignment
+import os
+
 
 def needleman_wunsch_alignment(seq1, seq2):
     alignments = pairwise2.align.globalms(seq1, seq2, 1, -0.5, -0.2, -0.1, score_only=True)
@@ -42,7 +44,8 @@ def process_csv(input_csv_file, output_directory):
                 
 
 if __name__ == "__main__":
-    input_csv_file = "maisfreq1200.csv"  # Substitua pelo nome do seu arquivo CSV de entrada
-    output_directory = "resultados1200"  # Substitua pelo diretório onde deseja salvar os resultados
+    for i in range(10):
+        input_csv_file = os.path.join(f'resultadossplit/{i}', f'split_{i}.csv')  # Substitua pelo nome do seu arquivo CSV de entrada
+        output_directory = f'resultadossplit/{i}'  # Substitua pelo diretório onde deseja salvar os resultados
 
-    process_csv(input_csv_file, output_directory)
+        process_csv(input_csv_file, output_directory)
